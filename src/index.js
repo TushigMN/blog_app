@@ -1,6 +1,7 @@
 import express from "express";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import mongoose from "mongoose";
 
 dotenv.config();
 
@@ -23,6 +24,8 @@ const authMiddleware = (req, res, next) => {
     res.send("Auth token invalid");
   }
 };
+
+app.use("/user", userRoutes);
 
 app.use("/data", authMiddleware);
 
