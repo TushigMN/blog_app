@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 
 import { userRoutes } from "./modules/user/routers/userRouter.js";
+import { blogRoutes } from "./modules/blog/controllers/blogController.js";
 
 dotenv.config();
 
@@ -52,7 +53,8 @@ const authMiddleware = (req, res, next) => {
 };
 app.use("/user", authMiddleware);
 app.use("/user", userRoutes);
-
+app.use("/blog", authMiddleware);
+app.use("/blog", blogRoutes);
 app.use("/data", authMiddleware);
 
 app.get("/data/get-data", (req, res) => {
