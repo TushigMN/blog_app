@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 
-import { userRoutes } from "./modules/user/routes/routes.js";
+import { userRoutes } from "./modules/user/routers/userRouter.js";
 
 dotenv.config();
 
@@ -50,14 +50,14 @@ const authMiddleware = (req, res, next) => {
     res.send("Auth token invalid");
   }
 };
-
+app.use("/user", authMiddleware);
 app.use("/user", userRoutes);
 
 app.use("/data", authMiddleware);
 
 app.get("/data/get-data", (req, res) => {
   const { user } = req;
-
+  console.log(user);
   const data = [{ name: "1" }];
   res.send(data);
 });
