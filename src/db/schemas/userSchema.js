@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const schema = mongoose.Schema;
 
-export const userShema = new schema(
+export const userSchema = new schema(
   {
     email: {
       type: String,

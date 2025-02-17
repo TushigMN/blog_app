@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-import { userShema } from "../schema/userShema.js";
+import { userSchema } from "../schemas/userSchema.js";
 
 class User {
   getToken() {
@@ -44,6 +44,6 @@ class User {
   }
 }
 
-userShema.loadClass(User);
+userSchema.loadClass(User);
 
-export const Users = mongoose.model("Users", userShema);
+export const Users = mongoose.model("Users", userSchema);
