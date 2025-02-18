@@ -20,32 +20,42 @@ userRoutes.get("/profile", async (req, res) => {
   const { userId } = req.user;
 
   try {
-    const user = await Users.findOne({ userId });
+    const user = await Users.findOne({ _id: userId });
     res.send(user);
   } catch (e) {
     res.send(e.message);
   }
 });
 
-userRoutes.get("/profile/userId", async (req, res) => {
-  const { userId } = req.user;
+userRoutes.get("/others", async (req, res) => {
+  const { username } = req.query;
 
   try {
-    const user = await Users.findOne({ userId });
+    const user = await Users.find({ username: { $ne: username } });
     res.send(user);
   } catch (e) {
     res.send(e.message);
   }
 });
 
-userRoutes.put("/updatePro", async (req, res) => {
-  const { email, password } = req.body;
+userRoutes.get("/profile/:userId", async (req, res) => {
+  const { userId } = req.user;
+
+  try {
+    const user = await Users.findOne({ _id: userId });
+    res.send(user);
+  } catch (e) {
+    res.send(e.message);
+  }
+});
+
+userRoutes.put("/", async (req, res) => {
+  const { email, username } = req.body;
   const { userId } = req.user;
   try {
-    const hashedPassword = await bcrypt.hash(password, 10);
     const user = await Users.findOneAndUpdate(
       { _id: userId },
-      { $set: { email, password: hashedPassword } },
+      { $set: { email, username } },
       { new: true, runValidators: true }
     );
     res.send(user);

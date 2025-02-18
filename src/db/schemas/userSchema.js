@@ -4,6 +4,13 @@ const schema = mongoose.Schema;
 
 export const userSchema = new schema(
   {
+    username: {
+      type: String,
+      trim: true,
+      required: true,
+      unique: true,
+    },
+
     email: {
       type: String,
       lowercase: true,

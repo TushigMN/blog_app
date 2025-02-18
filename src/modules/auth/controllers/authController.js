@@ -5,9 +5,9 @@ export const authRoutes = express.Router();
 
 authRoutes.post("/register", async (req, res) => {
   try {
-    const { password, email } = req.body;
+    const { username, password, email } = req.body;
 
-    const user = await Users.register({ email, password });
+    const user = await Users.register({ username, email, password });
     const token = user.getToken();
 
     res.send(token);
@@ -16,7 +16,7 @@ authRoutes.post("/register", async (req, res) => {
   }
 });
 
-userRoutes.post("/login", async (req, res) => {
+authRoutes.post("/login", async (req, res) => {
   const { password, email } = req.body;
 
   try {

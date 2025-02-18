@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 
 import { userRoutes } from "./modules/user/routers/userRouter.js";
 import { blogRoutes } from "./modules/blog/controllers/blogController.js";
+import { authRoutes } from "./modules/auth/controllers/authController.js";
 
 dotenv.config();
 
@@ -51,11 +52,12 @@ const authMiddleware = (req, res, next) => {
     res.send("Auth token invalid");
   }
 };
-app.use("/user", authMiddleware);
-app.use("/user", userRoutes);
-app.use("/blog", authMiddleware);
-app.use("/blog", blogRoutes);
+app.use("/", authMiddleware);
+app.use("/user", authMiddleware, userRoutes);
+app.use("/blogs", authMiddleware, blogRoutes);
 app.use("/data", authMiddleware);
+
+app.use("/", authRoutes);
 
 app.get("/data/get-data", (req, res) => {
   const { user } = req;

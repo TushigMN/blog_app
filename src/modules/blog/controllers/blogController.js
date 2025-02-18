@@ -3,7 +3,7 @@ import { Blogs } from "../../../db/models/blog.js";
 
 export const blogRoutes = express.Router();
 
-blogRoutes.post("/createBlog", async (req, res) => {
+blogRoutes.post("/", async (req, res) => {
   try {
     const { title, description, content } = req.body;
     const { userId } = req.user;
@@ -37,11 +37,23 @@ blogRoutes.get("/me", async (req, res) => {
   perPage = Number;
   page = Number;
 
-  const blog = await Blogs.findOne({ blogId })
+  const blog = await Blogs.find({ blogId })
     .skip((page - 1) * perPage)
     .limit(perPage);
 
   res.send(blog);
+});
+
+blogRoutes.get("/detail/:blogId", async (req, res) => {
+  const { title } = req.query;
+  const { blogId } = req.params;
+
+  if (blogId) {
+    const blog = await Blogs.findOne({
+      title,
+    });
+    res.send(blog);
+  }
 });
 
 blogRoutes.delete("/:blogId", async (req, res) => {
