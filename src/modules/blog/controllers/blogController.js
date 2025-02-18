@@ -31,3 +31,22 @@ blogRoutes.put("/update/:blogId", async (req, res) => {
 
   res.send(blog);
 });
+
+blogRoutes.get("/me", async (req, res) => {
+  let { blogId, perPage = 10, page = 1 } = req.query;
+  perPage = Number;
+  page = Number;
+
+  const blog = await Blogs.findOne({ blogId })
+    .skip((page - 1) * perPage)
+    .limit(perPage);
+
+  res.send(blog);
+});
+
+blogRoutes.delete("/:blogId", async (req, res) => {
+  const { blogId } = req.params;
+
+  const blog = await Blogs.findByIdAndDelete(blogId);
+  res.send("blog deleted.");
+});
