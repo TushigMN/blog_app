@@ -19,13 +19,12 @@ blogRoutes.post("/", async (req, res) => {
   }
 });
 
-blogRoutes.put("/update/:blogId", async (req, res) => {
-  const { userId } = req.user;
+blogRoutes.put("/:blogId", async (req, res) => {
   const { blogId } = req.params;
-  const { title, description, content } = req.body;
+  const { title, description, content } = req.query;
 
   const blog = await Blogs.findOneAndUpdate(
-    { _id: blogId, userId },
+    { _id: blogId },
     { $set: { title, description, content } }
   );
 
