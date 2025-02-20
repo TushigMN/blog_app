@@ -3,7 +3,7 @@ import { Users } from "../../../db/models/users.js";
 
 export const authRoutes = express.Router();
 
-authRoutes.post("/register", async (req, res) => {
+export const register = async (req, res) => {
   try {
     const { username, password, email } = req.body;
 
@@ -14,9 +14,9 @@ authRoutes.post("/register", async (req, res) => {
   } catch (e) {
     res.send(e.message);
   }
-});
+};
 
-authRoutes.post("/login", async (req, res) => {
+export const login = async (req, res) => {
   const { password, email } = req.body;
 
   try {
@@ -26,4 +26,4 @@ authRoutes.post("/login", async (req, res) => {
   } catch (e) {
     res.send(e.message);
   }
-});
+};
