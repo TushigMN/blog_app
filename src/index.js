@@ -3,9 +3,9 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 
-import { userRoutes } from "./modules/user/routers/userRouter.js";
-import { blogRoutes } from "./modules/blog/controllers/blogController.js";
-import { authRoutes } from "./modules/auth/controllers/authController.js";
+import { userRoutes } from "./modules/user/routes/userRoutes.js";
+import { blogRoutes } from "./modules/blog/routes/blogRoutes.js";
+import { authRoutes } from "./modules/auth/routes/authRoutes.js";
 import { comRoutes } from "./modules/comment/routes/comRoutes.js";
 
 dotenv.config();

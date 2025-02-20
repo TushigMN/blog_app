@@ -21,6 +21,11 @@ class User {
       password: hashedPassword,
     };
 
+    const nameChecker = await this.findOne({ username });
+    if (nameChecker) {
+      throw new Error("Username is already taken");
+    }
+
     const user = await this.create(doc);
 
     return user;
@@ -30,13 +35,13 @@ class User {
     const user = await this.findOne({ email });
 
     if (!user) {
-      throw new Error("Email eswel password buruu bn");
+      throw new Error("Email is wrong");
     }
 
     const valid = bcrypt.compare(password, user.password);
 
     if (!valid) {
-      throw new Error("Email eswel password buruu bn");
+      throw new Error("Password is wrong");
     }
 
     const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY);
