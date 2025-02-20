@@ -1,4 +1,3 @@
-import express from "express";
 import { Comments } from "../../../db/models/comment.js";
 
 export const createComment = async (req, res) => {

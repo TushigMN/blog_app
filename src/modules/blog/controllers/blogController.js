@@ -1,7 +1,4 @@
-import express from "express";
 import { Blogs } from "../../../db/models/blog.js";
-
-export const blogRoutes = express.Router();
 
 export const createBlog = async (req, res) => {
   try {

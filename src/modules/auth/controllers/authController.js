@@ -1,7 +1,4 @@
-import express from "express";
 import { Users } from "../../../db/models/users.js";
-
-export const authRoutes = express.Router();
 
 export const register = async (req, res) => {
   try {
