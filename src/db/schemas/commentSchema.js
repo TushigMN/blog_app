@@ -17,6 +17,10 @@ export const commentSchema = new schema(
     content: {
       type: String,
     },
+    parentId: {
+      type: String,
+      unique: true,
+    },
   },
   { timestamps: true }
 );

@@ -2,16 +2,33 @@ import { Comments } from "../../../db/models/comment.js";
 
 export const createComment = async (req, res) => {
   try {
-    const { content } = req.body;
+    const { content, parentId } = req.body;
     const { blogId } = req.params;
     const { userId } = req.user;
 
-    const comment = await Comments.create({
+    const doc = {
       blogId,
       userId,
       content,
-    });
+    };
+
+    if (parentId) {
+      doc["parentId"] = parentId;
+    }
+
+    await Comments.create(doc);
+
     res.send("comment posted.");
+  } catch (e) {
+    res.send(e.message);
+  }
+};
+
+export const getReply = async (req, res) => {
+  try {
+    const { parentId } = req.query;
+    const reply = Comments.find({ parentId });
+    res.send(reply);
   } catch (e) {
     res.send(e.message);
   }
