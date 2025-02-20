@@ -6,6 +6,7 @@ import mongoose from "mongoose";
 import { userRoutes } from "./modules/user/routers/userRouter.js";
 import { blogRoutes } from "./modules/blog/controllers/blogController.js";
 import { authRoutes } from "./modules/auth/controllers/authController.js";
+import { comRoutes } from "./modules/comment/routes/comRoutes.js";
 
 dotenv.config();
 
@@ -55,6 +56,7 @@ const authMiddleware = (req, res, next) => {
 app.use("/", authMiddleware);
 app.use("/user", authMiddleware, userRoutes);
 app.use("/blogs", authMiddleware, blogRoutes);
+app.use("/comment", authMiddleware, comRoutes);
 app.use("/data", authMiddleware);
 
 app.use("/", authRoutes);

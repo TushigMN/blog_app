@@ -20,7 +20,7 @@ userRoutes.get("/profile", async (req, res) => {
   const { userId } = req.user;
 
   try {
-    const user = await Users.findOne({ _id: userId });
+    const user = await Users.find({ _id: userId });
     res.send(user);
   } catch (e) {
     res.send(e.message);
