@@ -2,11 +2,11 @@
   "name": "project-two",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/index.js"
+    "dev": "nodemon src/index.ts"
   },
   "author": "",
   "license": "ISC",
@@ -16,9 +16,19 @@
     "express": "^4.21.2",
     "json": "^11.0.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.10.1"
+    "mongodb": "^6.13.1",
+    "mongoose": "^8.11.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/dotenv": "^6.1.1",
+    "@types/express": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/mongodb": "^4.0.6",
+    "@types/mongoose": "^5.11.96",
+    "@types/typescript": "^0.4.29",
     "nodemon": "^3.1.9"
   }
 }
